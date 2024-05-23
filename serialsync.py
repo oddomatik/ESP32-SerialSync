@@ -34,8 +34,7 @@ class FileSaveHandler(FileSystemEventHandler):
                     time.sleep(1)  # Allow some time for the device to settle
 
                 # Upload the file to the device using mpremote
-                result = subprocess.run(['mpremote', 'fs', 'cp', file_path, f':{relative_path}'], 
-capture_output=True, text=True)
+                result = subprocess.run(['mpremote', 'fs', 'cp', file_path, f':{relative_path}'], capture_output=True, text=True)
                 if result.returncode == 0:
                     print(f"Uploaded {relative_path} to ESP32")
                 else:
