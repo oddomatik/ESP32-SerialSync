@@ -5,8 +5,8 @@ This project provides a Python script to monitor a directory for file changes an
 ## Features
 
 - Monitors a specified directory for file changes.
-- Uploads modified files to the ESP32 board using `mpremote`.
-- Maintains a serial terminal connection for interacting with the ESP32 REPL.
+- Attempts to mirror these changes to the ESP32 board using `mpremote`.
+- All the while maintains a serial terminal connection for interacting with the ESP32 REPL.
 
 ## Requirements
 
