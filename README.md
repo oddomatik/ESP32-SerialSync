@@ -1,4 +1,4 @@
-# ESP32 File Monitor
+# ESP32 SerialSync
 
 This project provides a Python script to monitor a directory for file changes and upload modified files to an ESP32 board. It also maintains a serial terminal connection to the ESP32 for interacting with the REPL. It is most useful when run from a terminal in VSCode while doing your development work. It provides a seamless way of testing code in a similar manner to other IDEs that work with more modern CircuitPy devices.
 
@@ -20,8 +20,8 @@ This project provides a Python script to monitor a directory for file changes an
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/oddoamtik/vscode-circuitpy-watchdog.git
-    cd vscode-circuitpy-watchdog
+    git clone https://github.com/oddomatik/ESP32-SerialSync.git
+    cd ESP32-SerialSync
     ```
 
 2. Install the required Python packages:
@@ -40,4 +40,4 @@ Run the script with the following command-line arguments:
 Example:
 
 ```bash
-python monitor.py -d ~/<directory to monitor> -p /dev/<serial device>
+python serialsync.py -d ~/<directory to monitor> -p /dev/<serial device>
