@@ -20,8 +20,8 @@ This project provides a Python script to monitor a directory for file changes an
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/esp32_file_monitor.git
-    cd esp32_file_monitor
+    git clone https://github.com/oddoamtik/vscode-circuitpy-watchdog.git
+    cd vscode-circuitpy-watchdog
     ```
 
 2. Install the required Python packages:
