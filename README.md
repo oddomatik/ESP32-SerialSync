@@ -1,6 +1,6 @@
 # ESP32 File Monitor
 
-This project provides a Python script to monitor a directory for file changes and upload modified files to an ESP32 board. It also maintains a serial terminal connection to the ESP32 for interacting with the REPL.
+This project provides a Python script to monitor a directory for file changes and upload modified files to an ESP32 board. It also maintains a serial terminal connection to the ESP32 for interacting with the REPL. It is most useful when run from a terminal in VSCode while doing your development work. It provides a seamless way of testing code in a similar manner to other IDEs that work with more modern CircuitPy devices.
 
 ## Features
 
