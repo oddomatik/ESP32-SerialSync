@@ -24,8 +24,27 @@ class FileSaveHandler(FileSystemEventHandler):
 
         file_path = event.src_path
         relative_path = os.path.relpath(file_path, self.base_path)
+        self.upload_file(file_path, relative_path)
+
+    def on_created(self, event):
+        if event.is_directory:
+            return None
+
+        file_path = event.src_path
+        relative_path = os.path.relpath(file_path, self.base_path)
+        self.upload_file(file_path, relative_path)
+
+    def on_deleted(self, event):
+        if event.is_directory:
+            return None
+
+        file_path = event.src_path
+        relative_path = os.path.relpath(file_path, self.base_path)
+        self.delete_file(relative_path)
+
+    def upload_file(self, file_path, relative_path):
         try:
-            print(f"File modified: {relative_path}")
+            print(f"File modified/created: {relative_path}")
 
             with self.lock:
                 # Close the serial connection
@@ -42,7 +61,33 @@ class FileSaveHandler(FileSystemEventHandler):
 
         except subprocess.CalledProcessError as e:
             print(f"Error: {e}")
-        
+
+        finally:
+            # Reopen the serial connection
+            if not self.ser.is_open:
+                self.ser.open()
+                time.sleep(1)  # Allow some time for the device to settle
+
+    def delete_file(self, relative_path):
+        try:
+            print(f"File deleted: {relative_path}")
+
+            with self.lock:
+                # Close the serial connection
+                if self.ser.is_open:
+                    self.ser.close()
+                    time.sleep(1)  # Allow some time for the device to settle
+
+                # Delete the file from the device using mpremote
+                result = subprocess.run(['mpremote', 'fs', 'rm', f':{relative_path}'], capture_output=True, text=True)
+                if result.returncode == 0:
+                    print(f"Deleted {relative_path} from ESP32")
+                else:
+                    print(f"Error deleting {relative_path}: {result.stderr}")
+
+        except subprocess.CalledProcessError as e:
+            print(f"Error: {e}")
+
         finally:
             # Reopen the serial connection
             if not self.ser.is_open:
